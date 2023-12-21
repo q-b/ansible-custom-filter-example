@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: get system time
+    ansible.builtin.setup:
+      filter:
+        - ansible_date_time
+
+  - name: convert date
+    ansible.builtin.debug:
+      msg: "{{ ansible_date_time.iso8601_micro | to_datetime_from_iso }}"
